@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MeiliSearch } from 'meilisearch';
-import { FaPaw } from 'react-icons/fa'; // Importar el ícono
+import { FaPaw } from 'react-icons/fa'; // Icono de huella
 import './App.css';
 
 const client = new MeiliSearch({
@@ -14,6 +14,10 @@ const App = () => {
   const [error, setError] = useState(null);
 
   const manejarBusqueda = async () => {
+    if (!query.trim()) {
+      setError('Por favor ingresa un título.');
+      return;
+    }
     try {
       setError(null);
       const index = client.index('movies');
@@ -21,14 +25,14 @@ const App = () => {
       setResultados(hits);
     } catch (err) {
       console.error('Error al buscar:', err);
-      setError('No se pudo realizar la búsqueda');
+      setError('No se pudo realizar la búsqueda.');
     }
   };
 
   return (
     <div className="app-container">
       <header className="header">
-        <FaPaw className="logo-icon" /> {/* Ícono de huella */}
+        <FaPaw size="2rem" style={{ color: '#007bff' }} /> {/* Ícono de huella en azul */}
         <h1 className="title">Blue Dog</h1>
       </header>
       <div className="search-container">
@@ -47,7 +51,11 @@ const App = () => {
       <ul className="results-list">
         {resultados.map(({ id, title, genres, poster, overview }) => (
           <li key={id} className="result-item">
-            <img src={poster} alt={title} className="poster" />
+            <img
+              src={poster || 'https://via.placeholder.com/80x120?text=Sin+imagen'} // Fallback de imagen
+              alt={title || 'Sin título'}
+              className="poster"
+            />
             <div>
               <strong>{title || 'Sin título'}</strong> - {genres || 'Sin género'}
               <p>{overview || 'Sin descripción'}</p>
