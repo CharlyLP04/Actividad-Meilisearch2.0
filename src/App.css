@@ -1,18 +1,46 @@
-/* Mejora del input de búsqueda */
-.search-input {
-    width: 70%;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    outline: none;
-    transition: box-shadow 0.3s ease;
+.app-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
   }
   
-  .search-input:focus {
+  .logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+  }
+
+  title {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .search-container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+.result-item {
+    display: flex;
+    align-items: flex-start;
+    background: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .result-item:hover {
+    transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-color: #007bff;
   }
   
   /* Botón con ícono */
@@ -38,4 +66,50 @@
     margin-right: 8px;
     font-size: 18px;
   }
+
+  .results-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
   
+  result-item {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Imágenes */
+  .poster {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+  }
+
+  /* Texto */
+.result-item div {
+    flex: 1;
+  }
+  
+  .result-item strong {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .result-item p {
+    margin: 5px 0 0;
+    color: #555;
+    font-size: 14px;
+  }
