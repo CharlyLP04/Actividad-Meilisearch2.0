@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import { MeiliSearch } from 'meilisearch';
+import { FaSearch } from 'react-icons/fa';
 import './App.css';
 
-// Configuración del cliente MeiliSearch
 const client = new MeiliSearch({
   host: 'http://18.227.13.140', 
-  apiKey: 'b403bf62a797c2774542c7b6bc114125c6ca9aa5124507cc38b8fbfb8387',
+  apiKey: 'c716781c75b1115ae1bd945fd73b87d2f12a5f2e878cfc6fbe45f68d57be',
 });
 
 const App = () => {
-  const [query, setQuery] = useState('');
-  const [resultados, setResultados] = useState([]);
-  const [error, setError] = useState(null);
+  const [query, setQuery] = useState(''); 
+  const [resultados, setResultados] = useState([]); 
+  const [error, setError] = useState(null); 
 
   const manejarBusqueda = async () => {
     try {
-      setError(null);
-      const index = client.index('movies');
-      const { hits } = await index.search(query);
-      setResultados(hits);
+      setError(null); 
+      const index = client.index('movies'); 
+      const { hits } = await index.search(query); 
+      setResultados(hits); 
     } catch (err) {
-      console.error('No encontrado:', err);
-      setError('No se pudo realizar la búsqueda, en este momento');
+      console.error('Error al buscar:', err);
+      setError('No se pudo realizar la búsqueda');
     }
   };
-  
+
   return (
     <div className="app-container">
       <header className="header">
@@ -44,11 +44,11 @@ const App = () => {
         </button>
       </div>
 
-      {error && <p className="error-message">{error}</p>} {/* Mostrar mensaje de error si existe */}
+      {error && <p className="error-message">{error}</p>}
 
       <ul className="results-list">
         {resultados.map(({ id, title, genres, poster, overview }) => (
-          <li key={id} className="result-item"> {/* Renderizar cada resultado */}
+          <li key={id} className="result-item">
             <img src={poster} alt={title} className="poster" />
             <div>
               <strong>{title || 'Sin título'}</strong> - {genres || 'Sin género'}
