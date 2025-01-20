@@ -52,12 +52,13 @@ const App = () => {
         {resultados.map(({ id, title, genres, poster, overview }) => (
           <li key={id} className="result-item">
             <img
-              src={poster || 'https://via.placeholder.com/80x120?text=Sin+imagen'} // Fallback de imagen
+              src={poster || 'https://via.placeholder.com/80x120?text=Sin+imagen'}
               alt={title || 'Sin título'}
               className="poster"
             />
             <div>
-              <strong>{title || 'Sin título'}</strong> - {genres || 'Sin género'}
+              <strong>{title || 'Sin título'}</strong>
+              <p>{genres ? genres.join(', ') : 'Sin género'}</p> {/* Mostrar géneros */}
               <p>{overview || 'Sin descripción'}</p>
             </div>
           </li>
