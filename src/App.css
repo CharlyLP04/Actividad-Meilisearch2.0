@@ -24,12 +24,6 @@ body {
     left: 20px;
   }
   
-  .logo-icon {
-    font-size: 50px;
-    color: #007bff;
-    margin-right: 15px;
-  }
-  
   .title {
     font-size: 28px;
     color: white;
@@ -40,12 +34,12 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 100px; /* Alinea con el logo y el título */
+    margin-top: 100px;
   }
   
   .search-input {
-    width: 80%; 
-    padding: 12px 15px;
+    width: 80%;
+    padding: 15px;
     font-size: 18px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -61,8 +55,9 @@ body {
   .search-button {
     display: flex;
     align-items: center;
-    padding: 12px 25px;
-    font-size: 18px;
+    justify-content: center;
+    padding: 18px 30px;
+    font-size: 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
