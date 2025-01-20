@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MeiliSearch } from 'meilisearch';
-import { FaPaw, FaSearch } from 'react-icons/fa'; // Íconos de huella y lupa
+import { FaPaw, FaThumbsUp, FaThumbsDown } from 'react-icons/fa'; // Agrego íconos de like y dislike
 import './App.css';
 
 const client = new MeiliSearch({
@@ -13,32 +13,34 @@ const App = () => {
   const [resultados, setResultados] = useState([]);
   const [error, setError] = useState(null);
 
-  // useEffect para ejecutar la búsqueda cada vez que cambie el query
-  useEffect(() => {
-    const fetchResults = async () => {
-      if (query.trim()) {
-        try {
-          setError(null);
-          const index = client.index('movies');
-          const { hits } = await index.search(query);
-          setResultados(hits);
-        } catch (err) {
-          console.error('Error al buscar:', err);
-          setError('No se pudo realizar la búsqueda');
-        }
-      } else {
-        setResultados([]);
-      }
-    };
+  const manejarBusqueda = async () => {
+    try {
+      setError(null);
+      const index = client.index('movies');
+      const { hits } = await index.search(query);
+      setResultados(hits);
+    } catch (err) {
+      console.error('Error al buscar:', err);
+      setError('No se pudo realizar la búsqueda');
+    }
+  };
 
-    fetchResults();
-  }, [query]); // Solo se ejecuta cuando `query` cambia
+  useEffect(() => {
+    if (query) {
+      manejarBusqueda(); // Ejecuta la búsqueda cada vez que query cambia
+    }
+  }, [query]);
 
   return (
     <div className="app-container">
       <header className="header">
-        <FaPaw size="2rem" color="#007bff" /> {/* Huella azul */}
+        <FaPaw size="2rem" />
         <h1 className="title">Blue Dog</h1>
+        <div className="opinion-container">
+          <span className="opinion-text">Danos tu opinión</span>
+          <FaThumbsUp size="1.5rem" className="like-icon" />
+          <FaThumbsDown size="1.5rem" className="dislike-icon" />
+        </div>
       </header>
       <div className="search-container">
         <input
@@ -48,9 +50,6 @@ const App = () => {
           onChange={(e) => setQuery(e.target.value)}
           className="search-input"
         />
-        <button className="search-button">
-          <FaSearch size="20px" />
-        </button>
       </div>
       {error && <p className="error-message">{error}</p>}
       <ul className="results-list">
