@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MeiliSearch } from 'meilisearch';
 import { FaPaw, FaThumbsUp, FaThumbsDown } from 'react-icons/fa'; // Agrego íconos de like y dislike
+import { FaPaw, FaThumbsUp, FaThumbsDown } from 'react-icons/fa'; 
 import './App.css';
 
 const client = new MeiliSearch({
@@ -34,7 +35,7 @@ const App = () => {
   return (
     <div className="app-container">
       <header className="header">
-        <FaPaw size="2rem" />
+        <FaPaw size="2rem" className="logo-icon" />
         <h1 className="title">Blue Dog</h1>
         <div className="opinion-container">
           <span className="opinion-text">Danos tu opinión</span>
